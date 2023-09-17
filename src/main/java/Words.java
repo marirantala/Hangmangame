@@ -9,6 +9,9 @@
  * @author marir
  */
 import java.util.ArrayList;
+import java.util.Scanner;
+import java.nio.file.Paths;
+import java.util.Random;
 
 public class Words {
 
@@ -22,9 +25,25 @@ public class Words {
     public ArrayList<String> getWord() {
         //clear any possible previous letter array
         wordsList.clear();
-        //defining word, will later implement random choose from a list of words
-        String word = "dezemos";
 
+        try ( Scanner fileScanner = new Scanner(Paths.get("possiblewords.txt"))) {
+            //read the file until all lines have been read
+            while (fileScanner.hasNextLine()) {
+                //read one line and add it to array
+                String row = fileScanner.nextLine();
+                wordsList.add(row);
+            }
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+        
+        //getting random index number
+        Random rand = new Random();
+         int randomIndex = rand.nextInt(wordsList.size());
+         
+         //choosing word from file based on the random index number
+         String word = wordsList.get(randomIndex);
+        
         // Creating array of letters in the word
         ArrayList letters = new ArrayList<>();
 

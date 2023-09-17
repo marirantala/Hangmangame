@@ -42,6 +42,9 @@ public class GameManager {
 
         //changes the game status to 1 = game started 
         gameStatus = 1;
+        
+        hangman.hangmanGraphic();
+        textGraphic();
 
     }
 
