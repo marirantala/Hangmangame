@@ -43,6 +43,7 @@ public class GameManager {
         //changes the game status to 1 = game started 
         gameStatus = 1;
         
+        //initial graphics
         hangman.hangmanGraphic();
         textGraphic();
 
@@ -52,6 +53,12 @@ public class GameManager {
         //checks if game has been lost because of too many wrong guesses
         if (hangman.getWrongCount() >= 9) {
             System.out.println("Game over");
+            //print correct answer
+            System.out.print("Correct answer: ");
+            for (int i = 0; i < guessWord.size(); i++) {
+                System.out.print(guessWord.get(i));
+            }
+            System.out.println("");
             System.out.println("New game? (yes or no)");
             while (true) {
                 String answer = scanner.nextLine();
